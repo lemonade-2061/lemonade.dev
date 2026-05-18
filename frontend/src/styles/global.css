@@ -1,50 +1,107 @@
+/* Catppuccin Mocha palette */
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
+	/* base */
+	--ctp-base:     #1e1e2e;
+	--ctp-mantle:   #181825;
+	--ctp-crust:    #11111b;
+	--ctp-surface0: #313244;
+	--ctp-surface1: #45475a;
+	--ctp-surface2: #585b70;
+	--ctp-overlay0: #6c7086;
+	--ctp-overlay1: #7f849c;
+	--ctp-overlay2: #9399b2;
+	--ctp-subtext0: #a6adc8;
+	--ctp-subtext1: #bac2de;
+	--ctp-text:     #cdd6f4;
+
+	/* accents */
+	--ctp-yellow:   #f9e2af;
+	--ctp-peach:    #fab387;
+	--ctp-mauve:    #cba6f7;
+	--ctp-blue:     #89b4fa;
+	--ctp-green:    #a6e3a1;
+	--ctp-red:      #f38ba8;
+
+	/* semantic */
+	--bg:          var(--ctp-base);
+	--surface:     var(--ctp-surface0);
+	--text:        var(--ctp-text);
+	--text-muted:  var(--ctp-overlay1);
+	--accent:      var(--ctp-yellow);
+	--border:      var(--ctp-surface1);
+	--code-bg:     var(--ctp-mantle);
 }
+
 body {
 	font-family: system-ui, -apple-system, sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	color: rgb(var(--gray-dark));
+	background: var(--bg);
+	color: var(--text);
 	font-size: 18px;
 	line-height: 1.7;
 }
+
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
 }
+
 h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: var(--text);
 	line-height: 1.2;
 }
+
 a {
 	color: var(--accent);
+	text-decoration: none;
 }
+a:hover {
+	text-decoration: underline;
+}
+
 img {
 	max-width: 100%;
 	height: auto;
 }
+
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
+	background-color: var(--code-bg);
+	color: var(--ctp-peach);
+	border-radius: 4px;
+	font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+	font-size: 0.9em;
 }
+
 pre {
 	padding: 1.5em;
+	background-color: var(--code-bg);
 	border-radius: 8px;
+	overflow-x: auto;
 }
 pre > code {
 	all: unset;
+	font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
 }
+
+hr {
+	border: none;
+	border-top: 1px solid var(--border);
+	margin: 2em 0;
+}
+
+blockquote {
+	border-left: 3px solid var(--accent);
+	padding-left: 1em;
+	margin-left: 0;
+	color: var(--text-muted);
+}
+
 .sr-only {
 	border: 0;
 	padding: 0;
