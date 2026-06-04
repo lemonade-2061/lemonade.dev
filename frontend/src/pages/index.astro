@@ -12,10 +12,272 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-      <h1>Hi, I`m lemonade</h1>
-      <p>ただの大学生。Rustメインで低レイヤ・OS・Wayland周辺で遊んでます。最近はNixにも手を出してみたり...</p>
+    <main>
+      <div class="home">
+      <h1 class="hero">Hi, I'm <span class="hi-name">lemonade</span><span class="wave">👋</span></h1>
+
+      <section class="terminal" aria-label="自己紹介">
+        <div class="titlebar" aria-hidden="true">
+          <span class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </span>
+        </div>
+
+        <div class="body">
+          <p class="prompt" aria-hidden="true">
+            <span class="user">lemonade@dev</span><span class="sep">:</span><span class="path">~</span><span class="dollar">$</span> neofetch
+          </p>
+
+          <div class="neofetch">
+            <img class="art" src="/avatar.png" alt="lemonade のアイコン" width="200" height="200" />
+
+            <div class="info">
+              <p class="who"><span class="name">lemonade</span><span class="at">@</span><span class="host">dev</span></p>
+              <hr class="rule" />
+
+              <dl>
+                <div class="row"><dt>OS</dt><dd>Arch Linux <span class="dim">(btw)</span></dd></div>
+                <div class="row"><dt>Lang</dt><dd>Rust, TypeSclipt, C, Kotlin</dd></div>
+                <div class="row"><dt>Focus</dt><dd>低レイヤ / OS / Linux</dd></div>
+                <div class="row"><dt>Now</dt><dd>WM開発中</dd></div>
+                <div class="row"><dt>Status</dt><dd>情報系の大学生</dd></div>
+                <div class="row">
+                  <dt>Links</dt>
+                  <dd class="links">
+                    <a href="/about">about</a>
+                    <a href="/blog">blog</a>
+                    <a href="/projects">projects</a>
+                    <a href="/uses">uses</a>
+                  </dd>
+                </div>
+              </dl>
+
+              <div class="palette" aria-hidden="true">
+                <span style="background: var(--ctp-red)"></span>
+                <span style="background: var(--ctp-peach)"></span>
+                <span style="background: var(--ctp-yellow)"></span>
+                <span style="background: var(--ctp-green)"></span>
+                <span style="background: var(--ctp-blue)"></span>
+                <span style="background: var(--ctp-mauve)"></span>
+              </div>
+            </div>
+          </div>
+
+          <p class="prompt last" aria-hidden="true">
+            <span class="user">lemonade@dev</span><span class="sep">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cursor"></span>
+          </p>
+        </div>
+      </section>
+      </div>
 		</main>
 		<Footer />
-	</body>
+  </body>
+  <style>
+    main {
+      display: flex;
+      align-items: center;
+      min-height: calc(100vh - 14em);
+      padding-top: 1.5em;
+      padding-bottom: 1.5em;
+    }
+    .home {
+      width: 100%;
+    }
+
+    .hero {
+      font-size: 2.1rem;
+      margin: 0 0 0.9em;
+      letter-spacing: 0.01em;
+    }
+    .hero .hi-name {
+      color: var(--ctp-yellow);
+    }
+    .hero .wave {
+      display: inline-block;
+      margin-left: 0.3em;
+      transform-origin: 70% 70%;
+      animation: wave 2.2s ease-in-out infinite;
+    }
+    @keyframes wave {
+      0%, 60%, 100% { transform: rotate(0deg); }
+      10%, 30% { transform: rotate(14deg); }
+      20%, 40% { transform: rotate(-8deg); }
+    }
+
+    /* ---- terminal window ---- */
+    .terminal {
+      width: 100%;
+      background: var(--ctp-mantle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+    }
+
+    .titlebar {
+      display: flex;
+      align-items: center;
+      gap: 0.9em;
+      padding: 0.7em 1em;
+      background: var(--ctp-crust);
+      border-bottom: 1px solid var(--border);
+    }
+    .dots {
+      display: flex;
+      gap: 0.5em;
+    }
+    .dot {
+      width: 0.78em;
+      height: 0.78em;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot.red { background: var(--ctp-red); }
+    .dot.yellow { background: var(--ctp-yellow); }
+    .dot.green { background: var(--ctp-green); }
+    .title {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .body {
+      padding: 1.6em 1.8em 1.8em;
+      font-size: 0.95rem;
+    }
+
+    /* ---- prompt lines ---- */
+    .prompt {
+      margin: 0;
+      color: var(--text-muted);
+    }
+    .prompt .user { color: var(--ctp-green); font-weight: bold; }
+    .prompt .sep { color: var(--text-muted); }
+    .prompt .path { color: var(--ctp-blue); font-weight: bold; }
+    .prompt .dollar { color: var(--ctp-mauve); margin: 0 0.4em 0 0.3em; }
+    .prompt.last { margin-top: 1.4em; }
+
+    .cursor {
+      display: inline-block;
+      width: 0.55em;
+      height: 1.05em;
+      background: var(--ctp-text);
+      vertical-align: text-bottom;
+      animation: blink 1.1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ---- neofetch block ---- */
+    .neofetch {
+      display: flex;
+      align-items: center;
+      gap: 2.5em;
+      flex-wrap: wrap;
+      margin: 0.5em 0 0.4em;
+    }
+
+    .art {
+      margin: 0;
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+    }
+
+    .info {
+      min-width: 0;
+    }
+
+    .who {
+      margin: 0;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+    }
+    .who .name { color: var(--ctp-yellow); }
+    .who .at { color: var(--text-muted); }
+    .who .host { color: var(--ctp-green); }
+
+    .rule {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 0.5em 0 0.9em;
+    }
+
+    dl {
+      margin: 0;
+      display: grid;
+      gap: 0.3em;
+    }
+    .row {
+      display: flex;
+      gap: 0.75em;
+    }
+    dt {
+      color: var(--ctp-mauve);
+      font-weight: bold;
+      min-width: 4.5em;
+    }
+    dd {
+      margin: 0;
+      color: var(--text);
+    }
+    .dim { color: var(--text-muted); }
+    .emoji { -webkit-text-fill-color: initial; }
+
+    .links {
+      display: flex;
+      gap: 1.2em;
+      flex-wrap: wrap;
+    }
+    .links a {
+      color: var(--ctp-blue);
+      transition: color 0.15s ease;
+    }
+    .links a::before {
+      content: "→ ";
+      color: var(--text-muted);
+    }
+    .links a:hover {
+      color: var(--ctp-yellow);
+      text-decoration: none;
+    }
+    .links a:hover::before {
+      color: var(--ctp-yellow);
+    }
+
+    .palette {
+      display: flex;
+      gap: 0.4em;
+      margin-top: 1.3em;
+    }
+    .palette span {
+      width: 1.1em;
+      height: 1.1em;
+      border-radius: 3px;
+    }
+
+    @media (max-width: 560px) {
+      main {
+        min-height: auto;
+        align-items: stretch;
+      }
+      .body {
+        padding: 1.3em 1.2em 1.5em;
+      }
+      .neofetch {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.4em;
+      }
+      .art { width: 130px; height: 130px; }
+      .prompt { font-size: 0.85rem; }
+      .hero { font-size: 1.6rem; }
+    }
+  </style>
 </html>
+</content>
