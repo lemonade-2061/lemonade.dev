@@ -8,16 +8,235 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="ja">
 	<head>
-		<BaseHead title={`About | ${SITE_TITLE}`} description="" />
+		<BaseHead title={`About | ${SITE_TITLE}`} description="lemonade の自己紹介ページ" />
 	</head>
 	<body>
 		<Header />
 		<main>
+			<p class="filepath" aria-hidden="true">~/about.md</p>
 			<h1>About</h1>
-      <<p></p>
-      <dev>
-      </dev>
+
+			<section class="section">
+				<h2><span class="hash">##</span> Hello</h2>
+				<p>
+					lemonade です。低レイヤや OS、Linux まわりが好きです。
+          ふだんは Arch Linux を使っており、たまにBSDなど触ったりしています。いまは自作のウィンドウマネージャを開発しています。
+				</p>
+			</section>
+
+			<section class="section">
+				<h2><span class="hash">##</span> Interests</h2>
+				<p>
+					コンピュータが「なぜ動くのか」を下から理解するのが好きで、
+					カーネルやメモリ管理、プロセスなど興味があります。
+          Rustはもともとやってみたいという気持ちがあったのでRustメインで書いてます。何回か挫折しかけてますが、
+          気合と根性で頑張っています。
+				</p>
+			</section>
+
+			<section class="section">
+				<h2><span class="hash">##</span> Skills</h2>
+				<ul class="skills">
+					<li class="skill">
+						<span class="dot" style="background: var(--ctp-peach)"></span>
+						<div>
+							<p class="skill-name">Rust</p>
+							<p class="skill-desc">いちばん好きな言語。</p>
+						</div>
+					</li>
+					<li class="skill">
+						<span class="dot" style="background: var(--ctp-blue)"></span>
+						<div>
+							<p class="skill-name">TypeScript</p>
+							<p class="skill-desc">Web を書くときに。</p>
+						</div>
+					</li>
+					<li class="skill">
+						<span class="dot" style="background: var(--ctp-overlay2)"></span>
+						<div>
+							<p class="skill-name">C</p>
+							<p class="skill-desc">OS の勉強に</p>
+						</div>
+					</li>
+					<li class="skill">
+						<span class="dot" style="background: var(--ctp-mauve)"></span>
+						<div>
+							<p class="skill-name">Kotlin</p>
+							<p class="skill-desc">Android アプリを書くときに</p>
+						</div>
+					</li>
+				</ul>
+			</section>
+
+			<section class="section">
+				<h2><span class="hash">##</span> Timeline</h2>
+				<ol class="timeline">
+					<li>
+						<span class="year">2024</span>
+						<p>プログラミングを始める</p>
+					</li>
+					<li>
+            <span class="year">2025</span>
+						<p>情報系の大学に入学。Linux と出会い Arch をメイン機にする</p>
+					</li>
+					<li>
+						<span class="year">2025夏</span>
+						<p>Rust と低レイヤにハマる</p>
+					</li>
+					<li>
+						<span class="year">Now</span>
+						<p>自作ウィンドウマネージャを開発中（詳しくは <a href="/now">/now</a>）</p>
+					</li>
+				</ol>
+			</section>
+
+			<section class="section">
+				<h2><span class="hash">##</span> Links</h2>
+				<ul class="contact">
+					<li><a href="https://github.com/lemonade-2061">GitHub</a></li>
+					<!-- TODO: 他の SNS があれば追加
+					<li><a href="https://x.com/...">X</a></li>
+					-->
+					<li><a href="/blog">Blog</a></li>
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
+	<style>
+		.filepath {
+			margin: 0 0 0.4em;
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 0.85rem;
+			color: var(--text-muted);
+		}
+
+		h1 {
+			margin-bottom: 1.2em;
+		}
+
+		.section {
+			margin-bottom: 2.8em;
+		}
+
+		.section h2 {
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 1.15rem;
+			margin-bottom: 0.8em;
+			padding-bottom: 0.4em;
+			border-bottom: 1px dashed var(--border);
+		}
+		.hash {
+			color: var(--ctp-mauve);
+			margin-right: 0.4em;
+		}
+
+		.section p {
+			margin: 0 0 1em;
+		}
+		.section p:last-child {
+			margin-bottom: 0;
+		}
+
+		/* ---- skills ---- */
+		.skills {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.9em;
+		}
+		.skill {
+			display: flex;
+			align-items: baseline;
+			gap: 0.7em;
+			padding: 0.9em 1.1em;
+			background: var(--ctp-mantle);
+			border: 1px solid var(--border);
+			border-radius: 10px;
+		}
+		.skill .dot {
+			flex: none;
+			width: 0.65em;
+			height: 0.65em;
+			border-radius: 50%;
+		}
+		.skill-name {
+			margin: 0;
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-weight: bold;
+		}
+		.skill-desc {
+			margin: 0.15em 0 0;
+			font-size: 0.85rem;
+			color: var(--text-muted);
+		}
+
+		/* ---- timeline ---- */
+		.timeline {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.timeline li {
+			position: relative;
+			display: flex;
+			gap: 1.2em;
+			padding: 0 0 1.3em 1.4em;
+			border-left: 2px solid var(--border);
+		}
+		.timeline li:last-child {
+			padding-bottom: 0;
+		}
+		.timeline li::before {
+			content: "";
+			position: absolute;
+			left: -0.36em;
+			top: 0.45em;
+			width: 0.6em;
+			height: 0.6em;
+			border-radius: 50%;
+			background: var(--ctp-yellow);
+			border: 2px solid var(--bg);
+		}
+		.timeline .year {
+			flex: none;
+			min-width: 3.2em;
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-weight: bold;
+			color: var(--ctp-yellow);
+		}
+		.timeline p {
+			margin: 0;
+		}
+
+		/* ---- links ---- */
+		.contact {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			gap: 1.5em;
+			flex-wrap: wrap;
+		}
+		.contact a {
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			color: var(--ctp-blue);
+		}
+		.contact a::before {
+			content: "→ ";
+			color: var(--text-muted);
+		}
+		.contact a:hover {
+			color: var(--ctp-yellow);
+			text-decoration: none;
+		}
+
+		@media (max-width: 560px) {
+			.skills {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
 </html>
