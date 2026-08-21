@@ -3,12 +3,47 @@ const today = new Date();
 ---
 
 <footer>
-	<small>&copy; {today.getFullYear()} lemonade</small>
+	<div class="inner">
+		<small>&copy; {today.getFullYear()} lemonade</small>
+		<div class="links">
+			<a href="https://github.com/lemonade-2061" target="_blank" rel="noopener">github</a>
+			<a href="/rss.xml">rss</a>
+			<a href="/now">now</a>
+		</div>
+	</div>
 </footer>
 
 <style>
 	footer {
-		padding: 1.2em 1em;
-		text-align: center;
+		padding: 1.6em 2em;
+		border-top: 1px solid var(--border);
+		background: var(--ctp-crust);
+	}
+	.inner {
+		width: 720px;
+		max-width: 100%;
+		margin: auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1em;
+	}
+	small {
+		color: var(--text-muted);
+		font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+		font-size: 0.8rem;
+	}
+	.links {
+		display: flex;
+		gap: 1.4em;
+	}
+	.links a {
+		font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+	}
+	.links a:hover {
+		color: var(--ctp-yellow);
+		text-decoration: none;
 	}
 </style>

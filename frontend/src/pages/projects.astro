@@ -3,18 +3,252 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
+
+const featured = {
+	name: 'lemon-wm',
+	status: 'WIP',
+	description:
+		'Rust で書いている自作ウィンドウマネージャ。タイル型で、キーボード中心の操作を目指している。X11 のプロトコルを読みながら、ウィンドウの管理やイベントの処理をひとつずつ実装している。',
+	tags: [
+		{ label: 'Rust', color: 'var(--ctp-peach)' },
+		{ label: 'X11', color: 'var(--ctp-blue)' },
+		{ label: 'Linux', color: 'var(--ctp-yellow)' },
+	],
+	repo: 'https://github.com/lemonade-2061',
+};
+
+const projects = [
+	{
+		name: 'tiny-shell',
+		description: 'C で書いた小さなシェル。fork / exec / パイプの仕組みを理解するために作った。',
+		tags: [{ label: 'C', color: 'var(--ctp-overlay2)' }],
+		repo: 'https://github.com/lemonade-2061',
+	},
+	{
+		name: 'dotfiles',
+		description: 'Arch Linux の設定ファイル一式。ターミナル、エディタ、WM まわりの設定を管理している。',
+		tags: [{ label: 'Shell', color: 'var(--ctp-green)' }],
+		repo: 'https://github.com/lemonade-2061',
+	},
+	{
+		name: 'lemonade.dev',
+		description: 'このサイト。Astro で作っていて、デザインは Catppuccin Mocha ベース。',
+		tags: [
+			{ label: 'Astro', color: 'var(--ctp-mauve)' },
+			{ label: 'TypeScript', color: 'var(--ctp-blue)' },
+		],
+		repo: 'https://github.com/lemonade-2061/lemonade.dev',
+	},
+	{
+		name: 'mem-viewer',
+		description: 'プロセスのメモリマップを眺めるための CLI ツール。/proc を読んで表示するだけの小品。',
+		tags: [{ label: 'Rust', color: 'var(--ctp-peach)' }],
+		repo: 'https://github.com/lemonade-2061',
+	},
+];
 ---
 
 <!doctype html>
 <html lang="ja">
 	<head>
-		<BaseHead title={`Projects | ${SITE_TITLE}`} description="" />
+		<BaseHead title={`Projects | ${SITE_TITLE}`} description="lemonade が作ったもの一覧" />
 	</head>
 	<body>
 		<Header />
 		<main>
+			<p class="filepath" aria-hidden="true">~/projects</p>
 			<h1>Projects</h1>
+			<p class="lead">作ったもの、作っているもの。だいたい低レイヤか、自分のための道具。</p>
+
+			<section class="section">
+				<h2><span class="hash">##</span> Featured</h2>
+				<article class="card featured">
+					<div class="card-head">
+						<p class="card-name"><span class="prompt-mark" aria-hidden="true">▸</span>{featured.name}</p>
+						<span class="badge">{featured.status}</span>
+					</div>
+					<p class="card-desc">{featured.description}</p>
+					<div class="card-foot">
+						<ul class="tags">
+							{featured.tags.map((t) => (
+								<li><span class="tag-dot" style={`background: ${t.color}`}></span>{t.label}</li>
+							))}
+						</ul>
+						<a class="repo" href={featured.repo} target="_blank" rel="noopener">GitHub</a>
+					</div>
+				</article>
+			</section>
+
+			<section class="section">
+				<h2><span class="hash">##</span> Other</h2>
+				<div class="grid">
+					{projects.map((p) => (
+						<article class="card">
+							<div class="card-head">
+								<p class="card-name"><span class="prompt-mark" aria-hidden="true">▸</span>{p.name}</p>
+							</div>
+							<p class="card-desc">{p.description}</p>
+							<div class="card-foot">
+								<ul class="tags">
+									{p.tags.map((t) => (
+										<li><span class="tag-dot" style={`background: ${t.color}`}></span>{t.label}</li>
+									))}
+								</ul>
+								<a class="repo" href={p.repo} target="_blank" rel="noopener">GitHub</a>
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
+	<style>
+		.filepath {
+			margin: 0 0 0.4em;
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 0.85rem;
+			color: var(--text-muted);
+		}
+
+		h1 {
+			margin-bottom: 0.4em;
+		}
+
+		.lead {
+			margin: 0 0 2.2em;
+			color: var(--text-muted);
+		}
+
+		.section {
+			margin-bottom: 2.8em;
+		}
+
+		.section h2 {
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 1.15rem;
+			margin-bottom: 0.9em;
+			padding-bottom: 0.4em;
+			border-bottom: 1px dashed var(--border);
+		}
+		.hash {
+			color: var(--ctp-mauve);
+			margin-right: 0.4em;
+		}
+
+		/* ---- cards ---- */
+		.card {
+			display: flex;
+			flex-direction: column;
+			gap: 0.6em;
+			padding: 1.1em 1.3em;
+			background: var(--ctp-mantle);
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			transition: border-color 0.15s ease;
+		}
+		.card:hover {
+			border-color: var(--ctp-yellow);
+		}
+		.card.featured {
+			border-color: var(--ctp-surface2);
+		}
+		.card.featured:hover {
+			border-color: var(--ctp-yellow);
+		}
+
+		.card-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1em;
+		}
+		.card-name {
+			margin: 0;
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-weight: bold;
+			color: var(--ctp-yellow);
+		}
+		.prompt-mark {
+			color: var(--ctp-mauve);
+			margin-right: 0.45em;
+		}
+		.badge {
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 0.72rem;
+			font-weight: bold;
+			padding: 0.15em 0.6em;
+			border-radius: 99px;
+			color: var(--ctp-crust);
+			background: var(--ctp-green);
+		}
+
+		.card-desc {
+			margin: 0;
+			font-size: 0.92rem;
+			color: var(--ctp-subtext1);
+			flex: 1;
+		}
+
+		.card-foot {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1em;
+			margin-top: 0.3em;
+		}
+
+		.tags {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			gap: 1em;
+			flex-wrap: wrap;
+		}
+		.tags li {
+			display: flex;
+			align-items: center;
+			gap: 0.4em;
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 0.78rem;
+			color: var(--text-muted);
+		}
+		.tag-dot {
+			width: 0.6em;
+			height: 0.6em;
+			border-radius: 50%;
+			display: inline-block;
+		}
+
+		.repo {
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 0.82rem;
+			color: var(--ctp-blue);
+			white-space: nowrap;
+		}
+		.repo::before {
+			content: "→ ";
+			color: var(--text-muted);
+		}
+		.repo:hover {
+			color: var(--ctp-yellow);
+			text-decoration: none;
+		}
+		.repo:hover::before {
+			color: var(--ctp-yellow);
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.9em;
+		}
+
+		@media (max-width: 560px) {
+			.grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
 </html>

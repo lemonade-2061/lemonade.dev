@@ -3,18 +3,144 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
+
+const updated = '2026-08-20';
 ---
 
 <!doctype html>
 <html lang="ja">
 	<head>
-		<BaseHead title={`Now | ${SITE_TITLE}`} description="" />
+		<BaseHead title={`Now | ${SITE_TITLE}`} description="lemonade がいまやっていること" />
 	</head>
 	<body>
 		<Header />
 		<main>
+			<p class="filepath" aria-hidden="true">~/now.md</p>
 			<h1>Now</h1>
+			<p class="updated">
+				<span class="label">last update:</span> <time datetime={updated}>{updated}</time>
+			</p>
+			<p class="lead">いまやっていること。ときどき更新します。</p>
+
+			<section class="section">
+				<h2><span class="hash">##</span> 開発</h2>
+				<p>
+					自作ウィンドウマネージャ <a href="/projects">lemon-wm</a> を Rust で開発中。
+					いまはウィンドウのタイリングまわりを実装していて、フォーカスの移動やワークスペースの
+					切り替えをどう設計するか考えている。プロトコルの仕様を読むのに時間の大半が溶けている。
+				</p>
+			</section>
+
+			<section class="section">
+				<h2><span class="hash">##</span> 学習</h2>
+				<ul class="list">
+					<li>OS 自作の本を読みながら、ブートローダとメモリ管理のあたりを写経している</li>
+					<li>Rust の unsafe まわりの理解を深め中。FFI と生ポインタと格闘している</li>
+					<li>大学の授業でコンピュータアーキテクチャをやっているので、復習も兼ねて CPU の資料を読んでいる</li>
+				</ul>
+			</section>
+
+			<section class="section">
+				<h2><span class="hash">##</span> 読んでいる本</h2>
+				<ul class="list">
+					<li>『ゼロからの OS 自作入門』 — じわじわ進めている</li>
+					<li>『詳解 Linux カーネル』 — 積んでいたのを崩し始めた</li>
+				</ul>
+			</section>
+
+			<section class="section">
+				<h2><span class="hash">##</span> その他</h2>
+				<p>
+					夏休みなので生活リズムが完全に夜型になっている。直したい。
+					あとキーボードの沼にはまりかけているが、財布と相談して耐えている。
+				</p>
+			</section>
+
+			<p class="note">
+				このページは <a href="https://nownownow.com/about" target="_blank" rel="noopener">/now page</a> の
+				アイデアに沿ったものです。
+			</p>
 		</main>
 		<Footer />
 	</body>
+	<style>
+		.filepath {
+			margin: 0 0 0.4em;
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 0.85rem;
+			color: var(--text-muted);
+		}
+
+		h1 {
+			margin-bottom: 0.3em;
+		}
+
+		.updated {
+			margin: 0 0 0.6em;
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 0.85rem;
+			color: var(--ctp-green);
+		}
+		.updated .label {
+			color: var(--text-muted);
+		}
+
+		.lead {
+			margin: 0 0 2.2em;
+			color: var(--text-muted);
+		}
+
+		.section {
+			margin-bottom: 2.6em;
+		}
+
+		.section h2 {
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+			font-size: 1.15rem;
+			margin-bottom: 0.8em;
+			padding-bottom: 0.4em;
+			border-bottom: 1px dashed var(--border);
+		}
+		.hash {
+			color: var(--ctp-mauve);
+			margin-right: 0.4em;
+		}
+
+		.section p {
+			margin: 0 0 1em;
+		}
+		.section p:last-child {
+			margin-bottom: 0;
+		}
+
+		.list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: grid;
+			gap: 0.5em;
+		}
+		.list li {
+			padding-left: 1.3em;
+			position: relative;
+		}
+		.list li::before {
+			content: "-";
+			position: absolute;
+			left: 0.2em;
+			color: var(--ctp-yellow);
+			font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+		}
+
+		.note {
+			margin-top: 3em;
+			padding-top: 1em;
+			border-top: 1px dashed var(--border);
+			font-size: 0.85rem;
+			color: var(--text-muted);
+		}
+		.note a {
+			color: var(--ctp-blue);
+		}
+	</style>
 </html>

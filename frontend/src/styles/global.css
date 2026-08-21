@@ -32,6 +32,15 @@
 	--code-bg:     var(--ctp-mantle);
 }
 
+html {
+	scrollbar-color: var(--ctp-surface2) var(--ctp-crust);
+}
+
+::selection {
+	background: var(--ctp-yellow);
+	color: var(--ctp-crust);
+}
+
 body {
 	font-family: system-ui, -apple-system, sans-serif;
 	margin: 0;

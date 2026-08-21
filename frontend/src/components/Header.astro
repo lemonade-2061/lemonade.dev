@@ -11,6 +11,7 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/blog">blog</HeaderLink>
 			<HeaderLink href="/projects">projects</HeaderLink>
 			<HeaderLink href="/about">about</HeaderLink>
+			<HeaderLink href="/now">now</HeaderLink>
 			<HeaderLink href="/uses">uses</HeaderLink>
 		</div>
 	</nav>
@@ -35,6 +36,31 @@ import HeaderLink from './HeaderLink.astro';
 	.links {
 		display: flex;
 		gap: 2.5em;
+		flex-wrap: wrap;
   }
+
+	@media (max-width: 720px) {
+		header {
+			padding: 1em 1.2em;
+		}
+		nav {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.6em;
+		}
+		.links {
+			max-width: 100%;
+			gap: 1em;
+			font-size: 0.85rem;
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			white-space: nowrap;
+			scrollbar-width: none;
+			-webkit-overflow-scrolling: touch;
+		}
+		.links::-webkit-scrollbar {
+			display: none;
+		}
+	}
 
 </style>
