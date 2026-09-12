@@ -11,6 +11,8 @@
       in
       {
         devShells.default = pkgs.mkShell {
+          # ホスト側(/usr)のlibvipsをsharpが拾ってソースビルドに走るのを防ぐ
+          SHARP_IGNORE_GLOBAL_LIBVIPS = "1";
           packages = with pkgs; [
             nodejs
             pnpm
