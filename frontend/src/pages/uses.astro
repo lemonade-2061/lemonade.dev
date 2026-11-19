@@ -36,17 +36,8 @@ const sections = [
 		title: 'Editor',
 		items: [
 			{ name: 'Neovim', desc: '色々いじれていいよねって感じ' },
-			{ name: 'JetBrains Mono', desc: '個人的に好きなフォント' },
+			{ name: 'Maple Mono', desc: '個人的に好きなフォント' },
 			{ name: 'Catppuccin Mocha', desc: 'このカラースキームいいよね' },
-		],
-	},
-	{
-		title: 'CLI Tools',
-		items: [
-			{ name: 'git + lazygit', desc: 'バージョン管理。TUI に頼っている。' },
-			{ name: 'ripgrep / fd / fzf', desc: '検索三種の神器。これがないと生きていけない。' },
-			{ name: 'tmux', desc: 'ターミナルマルチプレクサ。セッションを開きっぱなしにしがち。' },
-			{ name: 'yay', desc: 'AUR ヘルパー。' },
 		],
 	},
 	{
@@ -69,7 +60,7 @@ const sections = [
 		<main>
 			<p class="filepath" aria-hidden="true">~/uses.md</p>
 			<h1>Uses</h1>
-			<p class="lead">ふだん使っている道具たち。ハードもソフトも、気に入ったものを長く使いたい派。</p>
+			<p class="lead">ツール類等</p>
 
 			{sections.map((section) => (
 				<section class="section">
