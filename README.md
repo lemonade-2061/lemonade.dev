@@ -31,3 +31,5 @@ pnpm dev
 - Root directory: `frontend`
 - Build command: `pnpm build`
 - Build output directory: `dist`
+
+詳しい手順 (初回セットアップ・独自ドメイン) は [docs/deploy.md](docs/deploy.md)。
